@@ -8,8 +8,13 @@ class PagesController
 {
     public function home()
     {        
-        // $users = App::get('database')->selectAll('users');
-
+        session_start();
+        
+        if(! $_SESSION["loggedIn"]){
+            header('Location: /login');
+            exit;
+        }
+        
         return view('index');
     }
     
