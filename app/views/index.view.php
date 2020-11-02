@@ -2,7 +2,7 @@
 
 <h1>Submit Your Name</h1>
 
-<form method="POST" action="/names">
+<form method="POST" action="/register">
 
     <div>
         <label for="username">Username</label>
