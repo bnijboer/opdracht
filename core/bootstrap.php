@@ -16,3 +16,13 @@ function view($name, $data = [])
     
     return require "app/views/{$name}.view.php";
 }
+
+function authCheck()
+{
+    session_start();
+        
+    if (! $_SESSION['loggedIn']) {
+        header('Location: /login');
+        exit;
+    }
+}

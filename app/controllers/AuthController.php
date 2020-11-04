@@ -8,12 +8,26 @@ class AuthController
 {
     public function register()
     {
-        App::get('database')->insert('users', [
-            'username' => $_POST['username'],
-            'password' => password_hash($_POST['password'], PASSWORD_DEFAULT)
-        ]);
+        $db = App::get('database');
         
-        return header('Location: /');
+        $db->createUsersTable();
+        
+        try {
+            $db->insert('users', [
+                'username' => $_POST['username'],
+                'password' => password_hash($_POST['password'], PASSWORD_DEFAULT)
+            ]);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+        
+        session_start();
+        
+        $_SESSION['username'] = $_POST['username'];
+        $_SESSION['loggedIn'] = true;
+        
+        header('Location: /');
+        exit;
     }
     
     public function login()
@@ -27,7 +41,6 @@ class AuthController
 
                 session_start();
             
-                $_SESSION['id'] = $result->id;
                 $_SESSION['username'] = $result->username;
                 $_SESSION['loggedIn'] = true;
                 
