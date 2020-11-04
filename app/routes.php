@@ -11,3 +11,6 @@ $router->get('logout', 'AuthController@logout');
 
 $router->post('upload', 'FileController@store');
 $router->get('file', 'FileController@show');
+
+$router->post('edit', 'RowController@edit');
+$router->post('update', 'RowController@update');

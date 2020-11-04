@@ -28,16 +28,18 @@ class QueryBuilder
             return $statement->fetchAll(PDO::FETCH_ASSOC);
             
         } catch(PDOException $e) {
-            die($e->getMessage());
+            echo $e->getMessage();
         }
     }
     
     public function select($table, $params)
     {
+        $key = implode(array_keys($params));
+        
         $sql = sprintf(
             'SELECT * FROM %s WHERE %s',
-            $table,            
-            'username="' . $params['username'] . '"'
+            $table,
+            $key . '="' . $params[$key] . '"'
         );
         
         try {

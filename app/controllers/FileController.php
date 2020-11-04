@@ -51,13 +51,13 @@ class FileController
     {        
         authCheck();
         
-        try {
-            $db = App::get('database');
-            $data = $db->selectAll('file');
-        } catch (Exception $e) {
-            die($e->getMessage);
+        $db = App::get('database');
+        
+        if($data = $db->selectAll('file')) {
+            return view('file', compact('data'));
         }
         
-        return view('file', compact('data'));
+        return view('file');
+        
     }
 }
