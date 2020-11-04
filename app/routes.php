@@ -8,3 +8,5 @@ $router->get('register', 'PagesController@register');
 $router->post('register', 'AuthController@register');
 $router->post('login', 'AuthController@login');
 $router->get('logout', 'AuthController@logout');
+
+$router->post('upload', 'FileController@store');

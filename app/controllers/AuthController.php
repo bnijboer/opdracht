@@ -19,8 +19,7 @@ class AuthController
     public function login()
     {
         $result = App::get('database')->select('users', [
-            'username' => $_POST['username'],
-            'password' => $_POST['password'],
+            'username' => $_POST['username']
         ]);
         
         if($result){

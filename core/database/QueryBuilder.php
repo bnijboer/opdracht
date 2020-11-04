@@ -18,7 +18,7 @@ class QueryBuilder
     {
         $sql = sprintf(
             'SELECT * FROM %s WHERE %s',
-            $table,
+            $table,            
             'username="' . $params['username'] . '"'
         );
         

@@ -2,15 +2,13 @@
 
 namespace App\Controllers;
 
-use App\Core\App;
-
 class PagesController
 {
     public function home()
     {        
         session_start();
         
-        if(! $_SESSION["loggedIn"]){
+        if(! $_SESSION['loggedIn']){
             header('Location: /login');
             exit;
         }
