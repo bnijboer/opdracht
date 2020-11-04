@@ -10,3 +10,4 @@ $router->post('login', 'AuthController@login');
 $router->get('logout', 'AuthController@logout');
 
 $router->post('upload', 'FileController@store');
+$router->get('file', 'FileController@show');

@@ -10,12 +10,7 @@ App::bind('database', new QueryBuilder(
 ));
     
 
-function view($name, $data = [])
-{
-    extract($data);
-    
-    return require "app/views/{$name}.view.php";
-}
+
 
 function authCheck()
 {
@@ -25,4 +20,16 @@ function authCheck()
         header('Location: /login');
         exit;
     }
+}
+
+function dd($n)
+{
+    die(var_dump($n));
+}
+
+function view($name, $data = [])
+{
+    extract($data);
+    
+    return require "app/views/{$name}.view.php";
 }

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
       <title>Exercise</title>
+      <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body>
     
@@ -13,6 +14,7 @@
     <ul>
         <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) : ?>
             <li><a href="/">Home</a></li>
+            <li><a href="/file">Show File</a></li>
             <li><a href="/logout">Logout</a></li>
         <?php else : ?>
             <li><a href="/login">Login</a></li>

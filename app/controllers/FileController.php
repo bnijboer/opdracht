@@ -25,18 +25,39 @@ class FileController
         //removes data type headers
         array_shift($csv);
         
-        $db = App::get('database');
-        $db->createFileTable();
+        try {
+            $db = App::get('database');
+            $db->createFileTable();
+            
+            array_map(function ($n) use ($db){
+                $db->insert('file', [
+                    'boekjaar' => $n[0],
+                    'week' => $n[1],
+                    'datum' => $n[2],
+                    'persnr' => $n[3],
+                    'uren' => $n[4],
+                    'uurcode' => $n[5]
+                ]);
+            }, $csv);
+            
+            header("Location: /file");
+            exit;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    
+    public function show()
+    {        
+        authCheck();
         
-        array_map(function ($n) use ($db){
-            $db->insert('file', [
-                'boekjaar' => $n[0],
-                'week' => $n[1],
-                'datum' => $n[2],
-                'persnr' => $n[3],
-                'uren' => $n[4],
-                'uurcode' => $n[5]
-            ]);
-        }, $csv);
+        try {
+            $db = App::get('database');
+            $data = $db->selectAll('file');
+        } catch (Exception $e) {
+            die($e->getMessage);
+        }
+        
+        return view('file', compact('data'));
     }
 }

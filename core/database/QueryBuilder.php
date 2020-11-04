@@ -14,6 +14,24 @@ class QueryBuilder
         $this->pdo = $pdo;
     }
     
+    public function selectAll($table)
+    {
+        $sql = sprintf(
+            'SELECT * FROM %s',
+            $table
+        );
+        
+        try {
+            $statement = $this->pdo->prepare($sql);
+            $statement->execute();
+            
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+            
+        } catch(PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+    
     public function select($table, $params)
     {
         $sql = sprintf(
