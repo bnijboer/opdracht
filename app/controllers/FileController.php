@@ -58,6 +58,5 @@ class FileController
         }
         
         return view('file');
-        
     }
 }

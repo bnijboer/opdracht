@@ -32,19 +32,19 @@ class QueryBuilder
         }
     }
     
-    public function select($table, $params)
+    public function select($table, $data)
     {
-        $key = implode(array_keys($params));
+        $key = implode(array_keys($data));
         
         $sql = sprintf(
             'SELECT * FROM %s WHERE %s',
             $table,
-            $key . '="' . $params[$key] . '"'
+            $key . '=' . $data[$key]
         );
         
         try {
             $statement = $this->pdo->prepare($sql);
-            $statement->execute($params);
+            $statement->execute($data);
             
             return $statement->fetch(PDO::FETCH_OBJ);
             
