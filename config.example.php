@@ -2,7 +2,7 @@
 
 return [
     'database' => [
-        'name' => 'opdracht',
+        'name' => '',
         'username' => '',
         'password' => '',
         'connection' => '',
