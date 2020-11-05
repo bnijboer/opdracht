@@ -21,6 +21,24 @@ class RowController
     
     public function update()
     {
-        dd($_POST);
+        authCheck();
+        
+        $db = App::get('database');
+        
+        $db->update(
+            'file',
+            [
+                'boekjaar' => $_POST['boekjaar'],
+                'week' => $_POST['week'],
+                'datum' => "'" . date('Y-m-d', strtotime($_POST['datum'])) . "'",
+                'persnr' => $_POST['persnr'],
+                'uren' => $_POST['uren'],
+                'uurcode' =>  "'" . $_POST['uurcode'] . "'",
+            ],
+            "id={$_POST['id']}"
+        );
+        
+        header('Location: /file');
+        exit;
     }
 }

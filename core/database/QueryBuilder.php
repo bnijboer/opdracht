@@ -39,7 +39,7 @@ class QueryBuilder
         $sql = sprintf(
             'SELECT * FROM %s WHERE %s',
             $table,
-            $key . '=' . $data[$key]
+            $key . '=' . '"' . $data[$key] . '"'
         );
         
         try {
@@ -53,18 +53,37 @@ class QueryBuilder
         }
     }
     
-    public function insert($table, $params)
+    public function insert($table, $data)
     {
         $sql = sprintf(
             'INSERT INTO %s (%s) VALUES (%s)',
             $table,
-            implode(', ', array_keys($params)),
-            ':' . implode(', :', array_keys($params))
+            implode(', ', array_keys($data)),
+            ':' . implode(', :', array_keys($data))
         );
         
         try {
             $statement = $this->pdo->prepare($sql);
-            $statement->execute($params);
+            $statement->execute($data);
+        } catch(PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+    
+    public function update($table, $data, $row)
+    {
+        $sql = sprintf(
+            'UPDATE %s SET %s WHERE %s',
+            $table,
+            implode(', ', array_map(function ($k, $v) {
+                return $k . '=' . $v;
+            }, array_keys($data), $data)),
+            $row
+        );
+        
+        try {
+            $statement = $this->pdo->prepare($sql);
+            $statement->execute($data);
         } catch(PDOException $e) {
             die($e->getMessage());
         }
