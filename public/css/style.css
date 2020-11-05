@@ -1,5 +1,5 @@
 table {
-    border: 1px solid black;
+    border: 1px solid darkslategray;
     margin: 0;
     font-size: 14px;
 }
@@ -12,9 +12,10 @@ th, td {
 }
 
 th {
-    font-weight: bold;
+    background-color: darkslategray;
+    color: white;
     text-transform: uppercase;
-    border: 1px solid black;
+    border: 1px solid gray;
 }
 
 tr:nth-of-type(even) {
@@ -23,4 +24,10 @@ tr:nth-of-type(even) {
 
 div > button {
     margin-top: 10px;
+}
+label {
+    display: block;
+}
+.edit-column {
+    text-align: center;
 }

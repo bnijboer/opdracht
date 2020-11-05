@@ -14,11 +14,11 @@
     <ul>
         <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) : ?>
             <li><a href="/">Home</a></li>
-            <li><a href="/file">Show Database</a></li>
-            <li><a href="/write">Write Data to .csv</a></li>
+            <li><a href="/file">Show Data</a></li>
+            <li><a href="/write">Parse To File</a></li>
             <li><a href="/logout">Logout</a></li>
         <?php else : ?>
-            <li><a href="/login">Login</a></li>
+            <li><a href="/login">Sign In</a></li>
             <li><a href="/register">Register</a></li>
         <?php endif; ?>
     </ul>

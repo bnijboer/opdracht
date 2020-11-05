@@ -1,6 +1,6 @@
 <?php require('partials/header.php') ?>
 
-<h1>Sign Up</h1>
+<h1>Register</h1>
 
 <form action="/register" method="POST">
 

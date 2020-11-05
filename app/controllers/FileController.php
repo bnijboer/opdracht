@@ -27,7 +27,6 @@ class FileController
         fputcsv($file, $headers, ';');
         
         foreach ($data as $row) {
-    
             array_shift($row);  // removes id column
             
             $row['datum'] = date('m/d/Y', strtotime($row['datum']));
@@ -40,7 +39,11 @@ class FileController
         
         fclose($file);
         
-        echo("Data successfully written to " . $_SERVER['DOCUMENT_ROOT'] . "\output\output.csv");
+        echo(
+            "Data written to " . $_SERVER['DOCUMENT_ROOT'] . "\output\output.csv" . "<br>" .
+            "Redirecting to index page..."
+        );
+        
         header("refresh:5; url=/");
         exit;
     }

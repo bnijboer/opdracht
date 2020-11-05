@@ -13,7 +13,7 @@
             <tr>
                 <?php foreach($row as $columnKey => $columnValue) : ?>
                     <?php if($columnKey === 'id') : ?>
-                        <td>
+                        <td class="edit-column">
                             <input type="hidden" name="rowId" value="<?= $row['id']; ?>">
                             <button type="submit">Edit Row <?= $row['id']; ?></button>
                         </td>

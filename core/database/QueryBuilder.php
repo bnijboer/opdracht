@@ -73,8 +73,8 @@ class QueryBuilder
         $sql = sprintf(
             'UPDATE %s SET %s WHERE %s',
             $table,
-            implode(', ', array_map(function ($k, $v) {
-                return $k . '=' . $v;
+            implode(', ', array_map(function ($key, $value) {
+                return $key . '=' . $value;
             }, array_keys($data), $data)),
             $row
         );
@@ -106,15 +106,15 @@ class QueryBuilder
     
     public function createFileTable()
     {
-            $sql = "CREATE TABLE IF NOT EXISTS file (
-                id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                boekjaar YEAR,
-                week TINYINT(2),
-                datum DATE,
-                persnr SMALLINT(5),
-                uren DECIMAL(4,2),
-                uurcode VARCHAR(10)
-            )";
+        $sql = "CREATE TABLE IF NOT EXISTS file (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            boekjaar YEAR,
+            week TINYINT(2),
+            datum DATE,
+            persnr SMALLINT(5),
+            uren DECIMAL(4,2),
+            uurcode VARCHAR(10)
+        )";
         
         try {
             $statement = $this->pdo->prepare($sql);

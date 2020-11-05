@@ -5,15 +5,15 @@
 <form action="/login" method="POST">
 
     <div>
-        <div>
+        <div class="form-control">
             <label for="username">Username</label>
             <input name="username" type="text">
         </div>
-        <div>
+        <div class="form-control">
             <label for="password">Password</label>
             <input name="password" type="password">
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Log In</button>
     </div>
     
 </form>
