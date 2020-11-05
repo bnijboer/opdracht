@@ -9,8 +9,8 @@ $router->post('register', 'AuthController@register');
 $router->post('login', 'AuthController@login');
 $router->get('logout', 'AuthController@logout');
 
+$router->get('write', 'FileController@create');
 $router->post('upload', 'FileController@store');
 $router->get('file', 'FileController@show');
-
-$router->post('edit', 'RowController@edit');
-$router->post('update', 'RowController@update');
+$router->post('edit', 'FileController@edit');
+$router->post('update', 'FileController@update');

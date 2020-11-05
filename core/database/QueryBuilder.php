@@ -26,7 +26,6 @@ class QueryBuilder
             $statement->execute();
             
             return $statement->fetchAll(PDO::FETCH_ASSOC);
-            
         } catch(PDOException $e) {
             echo $e->getMessage();
         }
