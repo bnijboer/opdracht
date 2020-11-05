@@ -7,7 +7,7 @@
 <body>
     
 <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) : ?>
-    <?= "Logged in as {$_SESSION['username']}" ?>
+    <?= "Logged in as {$_SESSION['username']}"; ?>
 <?php endif ?>
 
 <nav>
@@ -20,6 +20,6 @@
         <?php else : ?>
             <li><a href="/login">Login</a></li>
             <li><a href="/register">Register</a></li>
-        <?php endif ?>
+        <?php endif; ?>
     </ul>
 </nav>

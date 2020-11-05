@@ -36,7 +36,7 @@ class AuthController
             'username' => $_POST['username']
         ]);
         
-        if($result){
+        if ($result) {
             if (password_verify($_POST['password'], $result->password)) {
 
                 session_start();
@@ -46,7 +46,6 @@ class AuthController
                 
                 header('Location: /');
                 exit;
-                
             } else {
                 die('Invalid credentials.');
             }

@@ -46,7 +46,6 @@ class QueryBuilder
             $statement->execute($data);
             
             return $statement->fetch(PDO::FETCH_OBJ);
-            
         } catch(PDOException $e) {
             die($e->getMessage());
         }
@@ -90,14 +89,14 @@ class QueryBuilder
     
     public function createUsersTable()
     {
-        try {
-            $sql = "CREATE TABLE IF NOT EXISTS users (
-                id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                username VARCHAR(50) UNIQUE NOT NULL,
-                password VARCHAR(250) NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-            )";
-          
+        $sql = "CREATE TABLE IF NOT EXISTS users (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(50) UNIQUE NOT NULL,
+            password VARCHAR(250) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        )";
+        
+        try { 
             $statement = $this->pdo->prepare($sql);
             $statement->execute();
         } catch(PDOException $e) {
@@ -107,7 +106,6 @@ class QueryBuilder
     
     public function createFileTable()
     {
-        try {
             $sql = "CREATE TABLE IF NOT EXISTS file (
                 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 boekjaar YEAR,
@@ -117,7 +115,8 @@ class QueryBuilder
                 uren DECIMAL(4,2),
                 uurcode VARCHAR(10)
             )";
-          
+        
+        try {
             $statement = $this->pdo->prepare($sql);
             $statement->execute();
         } catch(PDOException $e) {

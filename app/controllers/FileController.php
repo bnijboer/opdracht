@@ -13,13 +13,13 @@ class FileController
         $db = App::get('database');
         
         if(! $data = $db->selectAll('file')) {
-            header('Location: /');
+            header("refresh:2; url=/");
             exit;
         }
         
-        $file = fopen($_SERVER['DOCUMENT_ROOT'] . "\output\\output.csv", 'w') or die("Writing failed.");
+        $file = fopen($_SERVER['DOCUMENT_ROOT'] . "\output\output.csv", 'w') or die("Writing failed.");
         
-        // captures column headers (except for 'id'), and capitalizes them
+        // captures column headers (except for the first: 'id'), and capitalizes them
         $headers = array_map(function ($n) {
             return ucfirst($n);
         }, array_slice(array_keys($data[0]), 1));
@@ -27,13 +27,12 @@ class FileController
         fputcsv($file, $headers, ';');
         
         foreach ($data as $row) {
-            
-            //removes id column
-            array_shift($row);
+    
+            array_shift($row);  // removes id column
             
             $row['datum'] = date('m/d/Y', strtotime($row['datum']));
             
-            //trims off decimal zeroes, then converts decimal sepataror to comma
+            // trims off decimal zeroes, then converts decimal separator to comma
             $row['uren'] = str_replace('.', ',', floatval($row['uren']));
             
             fputcsv($file, $row, ';');
@@ -51,8 +50,8 @@ class FileController
         authCheck();
         
         $csv = array_map(function ($n) {
-            // removes new lines
-            $row = explode(';', preg_replace('/\s*/m', '', $n));
+            
+            $row = explode(';', preg_replace('/\s*/m', '', $n));    // removes new lines
             
             // converts to SQL format
             $row[2] = date('Y-m-d', strtotime($row[2]));
@@ -62,8 +61,7 @@ class FileController
             
         }, file($_FILES['csvfile']['tmp_name']));
         
-        //removes data type headers
-        array_shift($csv);
+        array_shift($csv);  // removes column headers
         
         try {
             $db = App::get('database');
@@ -93,12 +91,12 @@ class FileController
         
         $db = App::get('database');
         
-        if($data = $db->selectAll('file')) {
-            return view('file', compact('data'));
+        if(! $data = $db->selectAll('file')) {
+            header("refresh:2; url=/");
+            exit;
         }
         
-        header('Location: /');
-        exit;
+        return view('file', compact('data'));
     }
     
     public function edit()

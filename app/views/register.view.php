@@ -2,7 +2,7 @@
 
 <h1>Sign Up</h1>
 
-<form method="POST" action="/register">
+<form action="/register" method="POST">
 
     <div>
         <label for="username">Username</label>
